@@ -1,20 +1,21 @@
 module.exports = {
-  devtool: 'source-map',
-  entry: [
-    './src/main.jsx'
-  ],
+  entry: './index.js',
   output: {
-    path: __dirname + '/compiled',
-    filename: "bundle.js"
+    filename: 'bundle.js',
+    path: './compiled'
   },
   module: {
     loaders: [
       {
-       test: /\.jsx$/,
-       exclude: /node_modules/,
-       loader: "babel-loader",
-       query: { presets: ['es2015', 'react'] }
-     }
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015', 'react']
+        }
+      }
     ]
+  },
+  resolve: {
+    extentions: ['', '.js', '.jsx']
   }
 }

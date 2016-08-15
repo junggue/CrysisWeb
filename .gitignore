@@ -2,4 +2,6 @@
 
 /compiled/bundle.js
 
+npm-debug.log
+
 .DS_Store
