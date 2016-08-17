@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class CreateOrg extends React.Component {
-  constructor(){
-    super();
+class CreateOrg extends Component {
+  constructor(props){
+    super(props);
     this.state = {
       orgName: '',
       orgPassword: ''
@@ -12,7 +12,7 @@ class CreateOrg extends React.Component {
   }
 
   update() {
-    var url =
+    var url = 'http://localhost:3000/api/organization';
     fetch(url, {
       method: 'POST',
       body: JSON.stringify({
