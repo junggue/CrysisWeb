@@ -11,7 +11,7 @@ class CreateOrg extends Component {
     this.update = this.update.bind(this)
   }
 
-  update() {
+  insertData() {
     var url = 'http://localhost:3000/api/organization';
     fetch(url, {
       method: 'POST',
@@ -20,6 +20,14 @@ class CreateOrg extends Component {
         orgPassword: this.state.orgPassword
       })
     })
+  }
+
+  update(e) {
+    this.setState({
+      orgName: ReactDOM.findDOMNode(this.refs.orgName).value,
+      orgPassword: ReactDOM.findDOMNode(this.refs.orgPassword).value
+    })
+    this.insertData();
   }
 
   render() {
