@@ -23,11 +23,6 @@ class CreateOrg extends Component {
     })
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    //Redirect to new page
-  }
-
   update(e) {
     this.setState({
       orgName: ReactDOM.findDOMNode(this.refs.orgName).value,
