@@ -8,18 +8,24 @@ class CreateOrg extends Component {
       orgName: '',
       orgPassword: ''
     }
+    this.handleSubmit = this.update.bind(this)
     this.update = this.update.bind(this)
   }
 
   insertData() {
     var url = 'http://localhost:3000/api/organization';
-    fetch(url, {
+    return fetch(url, {
       method: 'POST',
       body: JSON.stringify({
         orgName: this.state.orgName,
         orgPassword: this.state.orgPassword
       })
     })
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    //Redirect to new page
   }
 
   update(e) {
@@ -33,19 +39,19 @@ class CreateOrg extends Component {
   render() {
     return (
       <div>
-        <p>
-          <span>Organization Name</span>
-          <input ref="orgName" type="text" />
-        </p>
-        <p>
-          <span>Password</span>
-          <input ref="orgPassword" type="password" />
-        </p>
-        <p>
-          <span>Confirm Password</span>
-          <input ref="orgPassword" type="password" />
-        </p>
-        <button type="button" onClick={this.update}>Submit</button>
+        <form onSubmit={this.handleSubmit}>
+          <p>
+            <span>Organization Name</span>
+            <input type="text" className="orgName"/>
+            {this.state.orgName}
+          </p>
+          <p>
+            <span>Password</span>
+            <input type="password" className="" />
+            {this.state.orgPassword}
+          </p>
+        </form>
+        <button className="button" type="submit" onClick={this.update}>Submit</button>
       </div>
     );
   }
