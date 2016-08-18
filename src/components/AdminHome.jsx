@@ -7,12 +7,18 @@ class AdminHome extends Component {
 		this.state = {
 			data: [],
 			openEvent: undefined,
-			detailOpen: false
+			showModal: false,
 		}
+		this.updateData= this.updateData.bind(this);
+		this.getData = this.getData.bind(this);
 	}
 
 	componentWillMount() {
 		this.getData();
+	}
+
+	updateData(newData){
+		this.setState({data:this.state.data.concat([newData])});
 	}
 
 	getData(){
@@ -33,51 +39,42 @@ class AdminHome extends Component {
 			})
 	}
 
-	detailOpen(event) {
-		console.log("EVNET",event)
+	showModal(event) {
 		this.setState({
-			detailOpen: true,
-			openEvent: event
+			showModal: true,
+			openEvent: event,
 		});
 	}
 
 	render(){
 		return(
 			<div>
-			<CreateTable userData={this.state.data} />
-			<p>
-			<button type="button" onClick={this.detailOpen.bind(this, event)}>Add New Users</button>
-			</p>
-			<div>
-				<AddUserModal event={this.state.openEvent} detailOpen={this.state.detailOpen}/>
-			</div>
+				<CreateTable userData={this.state.data}/>
+				<button type="button" onClick={this.showModal.bind(this)}>Add New Users</button>
+				<AddUserModal event={this.state.openEvent} showModal={this.state.showModal} data={this.state.data} updateData={this.updateData}/>
 			</div>
 		);
 	}
 }
 
 const CreateTable = (props) => {
-
-	var rows = [];
-	props.userData.forEach(function(row, index){
-		rows.push(<UserRow key={index} row={row} index={index} />)
+	const list = props.userData.map(function(row, index){
+		return (<UserRow key={index} row={row} index={index} />)
 	})
-
-		return (
-			<div>
-				<table>
+	return (
+		<div>
+			<table>
 				<thead>
 					<RowHead/>
 				</thead>
 				<tbody>
-				{rows}
+					{list}
 				</tbody>
-				</table>
-			</div>
-			);
+			</table>
+		</div>
+		);
 }
 
-//getting a row object {}
 const UserRow = (props) => {
 	return(
 	<tr>
@@ -89,6 +86,8 @@ const UserRow = (props) => {
 		<td>{props.row.wardenName}</td>
 		<td>{props.row.isAdmin.toString()}</td>
 		<td>{props.row.status}</td>
+		<td><button type="button">Edit</button></td>
+		<td><button type="button">Delete</button></td>
 	</tr>
 	);
 }
