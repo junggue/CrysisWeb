@@ -95,7 +95,7 @@ class EditUserModal extends React.Component {
 				// this.props.updateData(result);
 				console.log(result)
 				this.props.getData();
-				this.closeModal();
+				this.props.closeEditModal();
 			});
 	}
 
