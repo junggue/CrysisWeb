@@ -135,7 +135,7 @@ const CreateTable = (props) => {
 const UserRow = (props) => {
 	return(
 	<tr>
-		<td>{props.index}</td>
+		<td>{props.row.id}</td>
 		<td>{props.row.username}</td>
 		<td>{props.row.email}</td>
 		<td>{props.row.name}</td>
@@ -164,7 +164,7 @@ const UserRow = (props) => {
 const RowHead = () => {
 	return (
 		<tr>
-			<th>number</th>
+			<th>ID</th>
 			<th>username</th>
 			<th>email</th>
 			<th>name</th>

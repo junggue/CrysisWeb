@@ -130,12 +130,6 @@ class AddUserModal extends React.Component {
 		})
 	}
 
-	// onClick(e) {
- //      insertData();
- //      this.state.getData();
- //   }
-
-
 	render(){
 
 		return (
