@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class CreateOrg extends Component {
+class CreateOrg extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       orgName: '',
       orgPassword: ''
     }
-    this.handleSubmit = this.update.bind(this)
     this.update = this.update.bind(this)
   }
 
@@ -24,6 +23,7 @@ class CreateOrg extends Component {
   }
 
   update(e) {
+    console.log(e.target.value)
     this.setState({
       orgName: ReactDOM.findDOMNode(this.refs.orgName).value,
       orgPassword: ReactDOM.findDOMNode(this.refs.orgPassword).value
@@ -34,18 +34,16 @@ class CreateOrg extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <p>
-            <span>Organization Name</span>
-            <input type="text" className="orgName"/>
-            {this.state.orgName}
-          </p>
-          <p>
-            <span>Password</span>
-            <input type="password" className="" />
-            {this.state.orgPassword}
-          </p>
-        </form>
+        <p>
+          <span>Organization Name</span>
+          <input type="text" className="orgName"/>
+          {this.state.orgName}
+        </p>
+        <p>
+          <span>Password</span>
+          <input type="password" className="" />
+          {this.state.orgPassword}
+        </p>
         <button className="button" type="submit" onClick={this.update}>Submit</button>
       </div>
     );
