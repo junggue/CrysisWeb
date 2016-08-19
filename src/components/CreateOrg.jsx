@@ -36,15 +36,15 @@ class CreateOrg extends React.Component {
       <div>
         <p>
           <span>Organization Name</span>
-          <input type="text" className="orgName"/>
+          <input ref="orgName" type="text" />
           {this.state.orgName}
         </p>
         <p>
           <span>Password</span>
-          <input type="password" className="" />
+          <input ref="orgPassword" type="password" />
           {this.state.orgPassword}
         </p>
-        <button className="button" type="submit" onClick={this.update}>Submit</button>
+        <button type="button" onClick={this.update}>Submit</button>
       </div>
     );
   }
