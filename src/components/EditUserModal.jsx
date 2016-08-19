@@ -17,49 +17,57 @@ const customStyles = {
   }
 };
 
-class AddUserModal extends React.Component {
+class EditUserModal extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			showModal: props.showAddModal,
+			showEditModal: props.showEditModal,
 			event: props.event,
 			data: props.data,
 			username: '',
 			password: '',
 			email: '',
 			name: '',
-			isWarden: false,
+			isWarden: '',
 			wardenName: '',
-			isAdmin: false
+			isAdmin: ''
 		}
-		this.insertData = this.insertData.bind(this);
+		this.editData = this.editData.bind(this);
 		this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
 	}
 
+	//update after rendering? or before?
 	componentWillReceiveProps(nextProps){
     this.setState({
-      showModal: nextProps.showAddModal,
-      event: nextProps.event
+      showEditModal: nextProps.showEditModal,
+      event: nextProps.event,
+      username: nextProps.rowToEdit.username,
+      password: nextProps.rowToEdit.password,
+			email: nextProps.rowToEdit.email,
+			name: nextProps.rowToEdit.name,
+			isWarden: nextProps.rowToEdit.isWarden,
+			wardenName: nextProps.rowToEdit.wardenName,
+			isAdmin: nextProps.rowToEdit.isAdmin
     });
   }
 
   openModal() {
     this.setState({
-      showModal: true
+      showEditModal: true
     });
   }
 
   closeModal() {
     this.setState({
-      showModal: false
+      showEditModal: false
     });
   }
 
-	insertData(){
-		var url = 'http://localhost:3000/api/user';
+	editData(){
+		var url = 'http://localhost:3000/api/user?id=' + this.props.rowToEdit.id;
 		var config = {
-			method: "POST",
+			method: "PUT",
 			// required to fix:
 			// get the token from admin's token
 			headers: {
@@ -84,7 +92,9 @@ class AddUserModal extends React.Component {
 				return data.json();
 			})
 			.then((result) => {
-				this.props.updateData(result);
+				// this.props.updateData(result);
+				console.log(result)
+				this.props.getData();
 				this.closeModal();
 			});
 	}
@@ -130,27 +140,21 @@ class AddUserModal extends React.Component {
 		})
 	}
 
-	// onClick(e) {
- //      insertData();
- //      this.state.getData();
- //   }
-
-
 	render(){
 
 		return (
 			<Modal
-          isOpen={this.state.showModal}
+          isOpen={this.state.showEditModal}
           onRequestClose={this.closeModal}
           style={customStyles}>
 				<div>
 					<p>
 						<span>username</span>
-						<input type="text" onChange={this.updateUserName.bind(this)}/>
+						<input type="text" defaultValue={this.state.username} onChange={this.updateUserName.bind(this)}/>
 					</p>
 					<p>
 						<span>password</span>
-						<input type="text" onChange={this.updatePassword.bind(this)}/>
+						<input type="text" defaultValue={this.state.password} onChange={this.updatePassword.bind(this)}/>
 					</p>
 					<p>
 						<span>confirm password</span>
@@ -158,30 +162,35 @@ class AddUserModal extends React.Component {
 					</p>
 					<p>
 						<span>email</span>
-						<input type="text" onChange={this.updateEmail.bind(this)}/>
+						<input type="text" defaultValue={this.state.email} onChange={this.updateEmail.bind(this)}/>
 					</p>
 					<p>
 						<span>name</span>
-						<input type="text" onChange={this.updateName.bind(this)}/>
+						<input type="text" defaultValue={this.state.name} onChange={this.updateName.bind(this)}/>
 					</p>
 					<p>
 						<span>Is this user a warden?</span>
-						<input type="text" onChange={this.updateIsWarden.bind(this)}/>
+						<input type="text" defaultValue={this.state.isWarden} onChange={this.updateIsWarden.bind(this)}/>
 					</p>
 					<p>
 						<span>warden name</span>
-						<input type="text" onChange={this.updateWardenName.bind(this)}/>
+						<input type="text" defaultValue={this.state.wardenName} onChange={this.updateWardenName.bind(this)}/>
 					</p>
 					<p>
 						<span>Is this user an admin?</span>
-						<input type="text" onChange={this.updateIsAdmin.bind(this)}/>
+						<input type="text" defaultValue={this.state.isAdmin} onChange={this.updateIsAdmin.bind(this)}/>
 					</p>
-						<button type="button" onClick={this.insertData}>Add</button>
-						<button type="button" onClick={this.props.closeAddModal}>Cancel</button>
+						<button 
+						type="button" 
+						onClick={()=>{
+							this.editData();
+							console.log("IN MODAL",this.props.rowToEdit);
+						}}>Edit</button>
+						<button type="button" onClick={this.props.closeEditModal}>Cancel</button>
 				</div>
 			</Modal>
 		);
 	}
 }
 
-export default AddUserModal
+export default EditUserModal
