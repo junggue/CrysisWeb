@@ -7,9 +7,12 @@ class Login extends Component {
 		this.state = {
 			username: '',
 			password: '',
+			loggedIn: undefined,
 			userInfo: {}
 		}
 	}
+
+	// check this.state.userInfo.token
 
 	updateUserName(e){
 		this.setState({
@@ -20,6 +23,14 @@ class Login extends Component {
 		this.setState({
 			password	: e.target.value
 		})
+	}
+
+	login(username, password){
+		if(token){
+
+			return
+		}
+
 	}
 
 	getUserData(){
@@ -38,10 +49,12 @@ class Login extends Component {
 		return fetch(url, config)
 			.then((data)=>{return data.json()})
 			.then((result)=>{
-				console.log("RESULT", result); 
-				this.setState({
-					userInfo: result
-				});
+				if(!result.success) {
+					console.log("FAIL",result)
+				} else {
+					console.log("SUCCESS",result)
+					this.setState({userInfo: result});
+				}
 			});
 	}
 
@@ -60,8 +73,7 @@ class Login extends Component {
 						<div><input type="text" placeholder="Password" onChange={this.updatePassword.bind(this)}/>{this.state.password}</div>
 					</div>
 					<div>
-						
-						<Link to ="/AdminHome"><button onClick={this.getUserData.bind(this)}>Login</button></Link>
+						<button onClick={this.getUserData.bind(this)}>Login</button>
 						<button type="button"> New Organization </button>
 					</div>
 			</div>
@@ -69,5 +81,7 @@ class Login extends Component {
 		)
 	}
 }
+
+//auth-------------------
 
 export default Login;
