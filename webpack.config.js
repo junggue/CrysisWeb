@@ -4,6 +4,10 @@ module.exports = {
     filename: 'bundle.js',
     path: './compiled'
   },
+  "scripts": {
+  "postinstall": "webpack --config ./webpack-prod.config.js --progress --colors",
+  "start": "node server.js"
+  },
   module: {
     loaders: [
       {
