@@ -53,11 +53,11 @@ class Login extends Component {
 			<div className="LoginForm">
 					<div>
 					<label>Username</label>
-					<div><input type="text" placeholder="Username" onChange={this.updateUserName.bind(this)}/>{this.state.username}</div>
+					<div><input type="text" placeholder="Username" onChange={this.updateUserName.bind(this)}/></div>
 					</div>
 					<div>
 						<label>Password</label>
-						<div><input type="text" placeholder="Password" onChange={this.updatePassword.bind(this)}/>{this.state.password}</div>
+						<div><input type="password" placeholder="Password" onChange={this.updatePassword.bind(this)}/></div>
 					</div>
 					<div>
 						

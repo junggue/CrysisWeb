@@ -149,36 +149,42 @@ class EditUserModal extends React.Component {
           style={customStyles}>
 				<div>
 					<p>
-						<span>username</span>
+						<div>username</div>
 						<input type="text" defaultValue={this.state.username} onChange={this.updateUserName.bind(this)}/>
 					</p>
 					<p>
-						<span>password</span>
-						<input type="text" defaultValue={this.state.password} onChange={this.updatePassword.bind(this)}/>
+						<div>password</div>
+						<input type="password" defaultValue={this.state.password} onChange={this.updatePassword.bind(this)}/>
 					</p>
 					<p>
-						<span>confirm password</span>
-						<input type="text" />
+						<div>confirm password</div>
+						<input type="password" />
 					</p>
 					<p>
-						<span>email</span>
+						<div>email</div>
 						<input type="text" defaultValue={this.state.email} onChange={this.updateEmail.bind(this)}/>
 					</p>
 					<p>
-						<span>name</span>
+						<div>name</div>
 						<input type="text" defaultValue={this.state.name} onChange={this.updateName.bind(this)}/>
 					</p>
 					<p>
-						<span>Is this user a warden?</span>
-						<input type="text" defaultValue={this.state.isWarden} onChange={this.updateIsWarden.bind(this)}/>
-					</p>
-					<p>
-						<span>warden name</span>
+						<div>warden name</div>
 						<input type="text" defaultValue={this.state.wardenName} onChange={this.updateWardenName.bind(this)}/>
 					</p>
 					<p>
+						<span>Is this user a warden?</span>
+						<select defaultValue={this.state.isWarden} onChange={this.updateIsWarden.bind(this)}>
+						  <option value="true">True</option>
+						  <option value="false">False</option>
+						</select>
+					</p>
+					<p>
 						<span>Is this user an admin?</span>
-						<input type="text" defaultValue={this.state.isAdmin} onChange={this.updateIsAdmin.bind(this)}/>
+						<select defaultValue={this.state.isAdmin} onChange={this.updateIsWarden.bind(this)}>
+						  <option value="true">True</option>
+						  <option value="false">False</option>
+						</select>
 					</p>
 						<button 
 						type="button" 

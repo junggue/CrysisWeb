@@ -120,7 +120,7 @@ const CreateTable = (props) => {
 	})
 	return (
 		<div>
-			<table>
+			<table className="table">
 				<thead>
 					<RowHead/>
 				</thead>
@@ -136,7 +136,7 @@ const UserRow = (props) => {
 	return(
 	<tr>
 		<td>{props.row.id}</td>
-		<td>{props.row.username}</td>
+		<td >{props.row.username}</td>
 		<td>{props.row.email}</td>
 		<td>{props.row.name}</td>
 		<td>{props.row.isWarden.toString()}</td>
@@ -164,14 +164,14 @@ const UserRow = (props) => {
 const RowHead = () => {
 	return (
 		<tr>
-			<th>ID</th>
-			<th>username</th>
-			<th>email</th>
-			<th>name</th>
-			<th>isWarden</th>
-			<th>wardenName</th>
-			<th>isAdmin</th>
-			<th>status</th>
+			<th scope="row">ID</th>
+			<th scope="row">username</th>
+			<th scope="row">email</th>
+			<th scope="row">name</th>
+			<th scope="row">isWarden</th>
+			<th scope="row">wardenName</th>
+			<th scope="row">isAdmin</th>
+			<th scope="row">status</th>
 		</tr>
 	);
 }

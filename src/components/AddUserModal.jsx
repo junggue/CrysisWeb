@@ -139,36 +139,42 @@ class AddUserModal extends React.Component {
           style={customStyles}>
 				<div>
 					<p>
-						<span>username</span>
+						<div>username</div>
 						<input type="text" onChange={this.updateUserName.bind(this)}/>
 					</p>
 					<p>
-						<span>password</span>
-						<input type="text" onChange={this.updatePassword.bind(this)}/>
+						<div>password</div>
+						<input type="password" onChange={this.updatePassword.bind(this)}/>
 					</p>
 					<p>
-						<span>confirm password</span>
-						<input type="text" />
+						<div>confirm password</div>
+						<input type="password" />
 					</p>
 					<p>
-						<span>email</span>
+						<div>email</div>
 						<input type="text" onChange={this.updateEmail.bind(this)}/>
 					</p>
 					<p>
-						<span>name</span>
+						<div>name</div>
 						<input type="text" onChange={this.updateName.bind(this)}/>
 					</p>
 					<p>
-						<span>Is this user a warden?</span>
-						<input type="text" onChange={this.updateIsWarden.bind(this)}/>
-					</p>
-					<p>
-						<span>warden name</span>
+						<div>warden name</div>
 						<input type="text" onChange={this.updateWardenName.bind(this)}/>
 					</p>
 					<p>
+						<span>Is this user a warden?</span>
+						<select defaultValue={false} onChange={this.updateIsWarden.bind(this)}>
+						  <option value="true">True</option>
+						  <option value="false">False</option>
+						</select>
+					</p>
+					<p>
 						<span>Is this user an admin?</span>
-						<input type="text" onChange={this.updateIsAdmin.bind(this)}/>
+						<select defaultValue={false} onChange={this.updateIsWarden.bind(this)}>
+						  <option value="true">True</option>
+						  <option value="false">False</option>
+						</select>
 					</p>
 						<button type="button" onClick={this.insertData}>Add</button>
 						<button type="button" onClick={this.props.closeAddModal}>Cancel</button>
